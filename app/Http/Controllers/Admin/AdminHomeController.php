@@ -33,5 +33,3 @@ class AdminHomeController extends Controller
         return back();
     }
 }
-
-
