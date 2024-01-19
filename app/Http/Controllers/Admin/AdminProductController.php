@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminHomeController extends Controller
+class AdminProductController extends Controller
 {
     public function index()
     {
