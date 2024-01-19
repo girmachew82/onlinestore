@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -17,6 +18,7 @@ class Product extends Model
     * $this->attributes['price'] - int - contains the product price
     * $this->attributes['created_at'] - timestamp - contains the product creation date
     * $this->attributes['updated_at'] - timestamp - contains the product update date
+    * $this->items - Item[] - contains the associated items
     */
 
     protected $fillable = [
@@ -89,5 +91,26 @@ class Product extends Model
     public function setUpdatedAt($updatedAt)
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+
+    public static function sumPricesByQuantities($products, $productsInSession)
+    {
+        $total = 0;
+        foreach ($products as $product) {
+            $total = $total + ($product->getPrice()*$productsInSession[$product->getId()]);
+        }
+        return $total;
+    }
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+    public function getItems()
+    {
+        return $this->items;
+    }
+    public function setItems($items)
+    {
+        $this->items = $items;
     }
 }

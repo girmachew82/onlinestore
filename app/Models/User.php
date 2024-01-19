@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Order;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,7 @@ class User extends Authenticatable
         * $this->attributes['balance'] - int - contains the user balance
         * $this->attributes['created_at'] - timestamp - contains the user creation date
         * $this->attributes['updated_at'] - timestamp - contains the user update date
+        * $this->orders - Order[] - contains the associated orders
         */
     protected $fillable = [
         'name',
@@ -71,14 +73,13 @@ class User extends Authenticatable
     {
         return $this->attributes['role'];
     }
-
     public function setRole($role)
     {
         $this->attributes['role'] = $role;
     }
     public function getBalance()
     {
-    return $this->attributes['balance'];
+        return $this->attributes['balance'];
     }
     public function setBalance($balance)
     {
@@ -99,6 +100,19 @@ class User extends Authenticatable
     public function setUpdatedAt($updatedAt)
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+    public function setOrders($orders)
+    {
+        $this->orders = $orders;
     }
     /**
      * The attributes that should be hidden for serialization.

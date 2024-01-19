@@ -27,6 +27,9 @@
                         <a class="nav-link" href="{{ route('product.index') }}">Products</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('home.about') }}">About</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -54,11 +57,11 @@
             </div>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             @guest
-                <a class="nav-link active" href="{{ route('login') }}">Login</a>
-                <a class="nav-link active" href="{{ route('register') }}">Register</a>
+                <a class="nav-link active text-white" href="{{ route('login') }}">Login</a> &nbsp; | &nbsp;
+                <a class="nav-link active text-white" href="{{ route('register') }}">Register</a>
             @else
                 <form id="logout" action="{{ route('logout') }}" method="POST">
-                    <a role="button" class="nav-link active"
+                    <a role="button" class="nav-link active text-white"
                         onclick="document.getElementById('logout').submit();">Logout</a>
                     @csrf
                 </form>

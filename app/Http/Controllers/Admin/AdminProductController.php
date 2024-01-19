@@ -61,16 +61,16 @@ class AdminProductController extends Controller
         $product->setDescription($request->input('description'));
         $product->setPrice($request->input('price'));
         if ($request->hasFile('image')) {
-        $imageName = $product->getId().".".$request->file('image')->extension();
-        Storage::disk('public')->put(
-        $imageName,
-        file_get_contents($request->file('image')->getRealPath())
-        );
-        $product->setImage($imageName);
+            $imageName = $product->getId().".".$request->file('image')->extension();
+            Storage::disk('public')->put(
+                $imageName,
+                file_get_contents($request->file('image')->getRealPath())
+            );
+            $product->setImage($imageName);
         }
         $product->save();
         return redirect()->route('admin.product.index');
-   }
+    }
 
     public function delete($id)
     {
