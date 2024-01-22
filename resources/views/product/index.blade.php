@@ -13,6 +13,8 @@ class="btn bg-primary text-white">{{ $product->getName() }}</a>
 </div>
 </div>
 </div>
+
 @endforeach
+{{ $viewData['products']->links() }}
 </div>
 @endsection
