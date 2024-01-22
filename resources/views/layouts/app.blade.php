@@ -60,6 +60,7 @@
                 <a class="nav-link active text-white" href="{{ route('login') }}">Login</a> &nbsp; | &nbsp;
                 <a class="nav-link active text-white" href="{{ route('register') }}">Register</a>
             @else
+            <a class="nav-link active text-white" href="{{ route('myaccount.orders') }}">My Orders</a> &nbsp;&nbsp;
                 <form id="logout" action="{{ route('logout') }}" method="POST">
                     <a role="button" class="nav-link active text-white"
                         onclick="document.getElementById('logout').submit();">Logout</a>
